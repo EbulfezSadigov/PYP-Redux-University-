@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import 'antd/dist/antd.css';
+import University from './components/University';
+import thunk from "redux-thunk";
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import { universityReducer } from './redux/reducer/universityReducer';
+
+
+const store = createStore(universityReducer, applyMiddleware(thunk))
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Provider store={store}>
+        <University />
+      </Provider>
     </div>
   );
 }
